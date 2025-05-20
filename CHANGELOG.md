@@ -1,3 +1,74 @@
+## 1.0.0 (2025-05-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **helpers:** If you were using any of the beta before `4.0.0-dev14`. Please replace all the calls to helper functions with `helpers.xxx` for eg. `helpers.relativeTime(entity.state)` or `helpers.localize(entity)`
+* **hacs:** Minimum required HA Version is now 2023.7
+* **actions:** Requires HA 2023.4 minimum. Support for the new action format (`target` is also be supported), `service_data` should be renamed to `data` (but it still works with the old format)
+* **icons:** This might break your card-mod setup
+* this might break some of your color settings
+
+### Features
+
+* **action:** `repeat_limit` for `hold_action` ([73c216f](https://github.com/droans/button-card/commit/73c216f1bf82c104848bb5d7aef2d91ba3597a95)), closes [#564](https://github.com/droans/button-card/issues/564) [#555](https://github.com/droans/button-card/issues/555)
+* **actions:** Support for the new action (assist) and all the future ones ([d9c17a4](https://github.com/droans/button-card/commit/d9c17a40652c020a42497828a56f49d11748d1b8)), closes [#711](https://github.com/droans/button-card/issues/711) [#685](https://github.com/droans/button-card/issues/685)
+* **custom_fields:** Add `do_not_eval` to stop evaluating js templates in an embedded card ([1638cf8](https://github.com/droans/button-card/commit/1638cf81217ef696a6b0967550cbbb9f3849c813))
+* **helpers:** all template functions are now available through the `helpers` object ([f22ed69](https://github.com/droans/button-card/commit/f22ed6982f09d1ffbc303a14f81a9a6345acd274))
+* **icons:** replace ha-icon with ha-state-icon to follow new HA's icons per domain automatically ([ab6a3f5](https://github.com/droans/button-card/commit/ab6a3f5bd39fc48890f1b851e929df2fe1d8796c))
+* **state_display:** Support for `state_display` in `state` ([440dc77](https://github.com/droans/button-card/commit/440dc77e7e94ee2db2166be5612419426fcf3582)), closes [#426](https://github.com/droans/button-card/issues/426)
+* **templates:** new `relativeTime` function to display a relative time in a template and update it automatically ([965a3d7](https://github.com/droans/button-card/commit/965a3d7b97b9fe1d155029dd6156f7a2f051f5a9)), closes [#701](https://github.com/droans/button-card/issues/701)
+* **templates:** New date and time format helpers ([9b4fb05](https://github.com/droans/button-card/commit/9b4fb05e4e5b3d70fa4c1f8f7f5778ca55e551f6))
+* **templates:** Support for one time evaluation of js templates in `triggers_update` and `entity` ([#741](https://github.com/droans/button-card/issues/741)) ([b372642](https://github.com/droans/button-card/commit/b372642253c890b08c7de7395d138b01fb90120b)), closes [#618](https://github.com/droans/button-card/issues/618) [#558](https://github.com/droans/button-card/issues/558) [#368](https://github.com/droans/button-card/issues/368)
+* **variables:** A variable can depend on another variable based on their name's alphabetical order ([8cddccb](https://github.com/droans/button-card/commit/8cddccb83466d2db29f832085e2c701bdef6b254)), closes [#656](https://github.com/droans/button-card/issues/656)
+* Force the `numeric_precision` for states which are numbers ([24d75c2](https://github.com/droans/button-card/commit/24d75c2651c9e6b3b080b1c2561bda2c30a2f294))
+* new helper functions for date/time in templates ([2b75993](https://github.com/droans/button-card/commit/2b75993f22e4624776c839bfa9dafe1ddde7660d)), closes [#701](https://github.com/droans/button-card/issues/701)
+* Support for localization in templates ([5de2dc9](https://github.com/droans/button-card/commit/5de2dc906781f46a952377d40ba77d75728f19e3))
+
+
+### Bug Fixes
+
+* *_action more-info entity as a template was not evaluated ([02441b2](https://github.com/droans/button-card/commit/02441b29820bc84816bb480a94307291c20028d4)), closes [#734](https://github.com/droans/button-card/issues/734)
+* `group_expand` now works even if the entity is not a `group.xxx` ([f192ded](https://github.com/droans/button-card/commit/f192ded67f092a47d4bafe2c0fec2d8ccc55dc44)), closes [#645](https://github.com/droans/button-card/issues/645)
+* card broken with HA 2023.04bXX ([9b4f1e2](https://github.com/droans/button-card/commit/9b4f1e23be55a11e7c520e49cbd366380cdba23e)), closes [#669](https://github.com/droans/button-card/issues/669) [#671](https://github.com/droans/button-card/issues/671)
+* card would sometimes not be clickable ([56c3f44](https://github.com/droans/button-card/commit/56c3f44066c6bd08fb8a7d8bb8fa679920dc5992)), closes [#738](https://github.com/droans/button-card/issues/738) [#759](https://github.com/droans/button-card/issues/759)
+* Color are now aligned with HA > 2022.12 ([685d55e](https://github.com/droans/button-card/commit/685d55e49cacfacace96a56d17f97649a4e3cafd)), closes [#635](https://github.com/droans/button-card/issues/635)
+* color: auto/auto-no-temperature was broken ([a63f9a9](https://github.com/droans/button-card/commit/a63f9a96a5e4d4582ca90095c49464b0462a451a)), closes [#737](https://github.com/droans/button-card/issues/737)
+* custom fields would sometime throw unsafeHTML errors ([c67e1d5](https://github.com/droans/button-card/commit/c67e1d550c79bc6610e1592c95e509cfc6a06fa5)), closes [#725](https://github.com/droans/button-card/issues/725)
+* extra space at bottom because of button-card-action-handler ([699b57d](https://github.com/droans/button-card/commit/699b57d5fce3cd9f9d26b9e1b23fa086239f9f89)), closes [#672](https://github.com/droans/button-card/issues/672)
+* ha-icon (if in custom_fields) size was weird ([a448c8e](https://github.com/droans/button-card/commit/a448c8e826605d17591beebd4a230d0287cdf945))
+* ha-state-icon CSS selector was wrong ([a1bb39a](https://github.com/droans/button-card/commit/a1bb39a71c55dca505d4b1a7d820229e26d4e0eb))
+* icon would be cut with card height defined ([19f8393](https://github.com/droans/button-card/commit/19f83931939a8c15bd9e1174f11c0e52dd451bf8)), closes [#731](https://github.com/droans/button-card/issues/731)
+* Keep default background color for color_type: card when off ([41dea3f](https://github.com/droans/button-card/commit/41dea3f72a607ea0fc1c71269bb0122f27970a6e)), closes [#737](https://github.com/droans/button-card/issues/737)
+* localization fix ([02dfab3](https://github.com/droans/button-card/commit/02dfab3db391d2ab671f9722c730c1e70dd723db)), closes [#685](https://github.com/droans/button-card/issues/685) [#693](https://github.com/droans/button-card/issues/693)
+* lock icon was displaying over more-info dialog ([bf075b0](https://github.com/droans/button-card/commit/bf075b00e4a2f7aa6a193d03eb8c93e0aa30e8ae)), closes [#694](https://github.com/droans/button-card/issues/694)
+* lock would go out of the button ([0b3e4d3](https://github.com/droans/button-card/commit/0b3e4d331cfa21b5f682c962ea6222c9e1be7754))
+* lock would not display on many browsers ([245441b](https://github.com/droans/button-card/commit/245441b69fad5f56f43ea1b5d189b4ddbbab2ebb)), closes [#740](https://github.com/droans/button-card/issues/740)
+* non string fiels would error with an unsafeHTML error ([d65c347](https://github.com/droans/button-card/commit/d65c34757a20859a8c3c70fd2b612bfe818a662a)), closes [#725](https://github.com/droans/button-card/issues/725)
+* numerical states would not follow HA's format ([72d7c41](https://github.com/droans/button-card/commit/72d7c4133ff96713ecbe42168db0d6732b82510c)), closes [#662](https://github.com/droans/button-card/issues/662)
+* relativeTime didn't support to set the first letter uppercase ([f8b9b09](https://github.com/droans/button-card/commit/f8b9b0916964495c3b0b9341b5c6751a9a99a1c8)), closes [#735](https://github.com/droans/button-card/issues/735)
+* remove margin-top on name/label/state introduced with 4.0.0 which broke many cards ([53fee75](https://github.com/droans/button-card/commit/53fee75c163b72df42b859705af536c4c7dffac6)), closes [#742](https://github.com/droans/button-card/issues/742) [#744](https://github.com/droans/button-card/issues/744)
+* Support for `fire-dom-event` ([f4fcbfe](https://github.com/droans/button-card/commit/f4fcbfe2ee7e5a9f1ca7a550c77767e921e7b802)), closes [#429](https://github.com/droans/button-card/issues/429)
+* support for new ha-state-icon in 2024.02 ([ab2b393](https://github.com/droans/button-card/commit/ab2b3939bcce504125853d2ca9312d32f9a3f6d6))
+* **color:** color wouldn't follow light color with `color: auto` ([b63f0db](https://github.com/droans/button-card/commit/b63f0db220b8a9c72383c4288546112625fdff04)), closes [#737](https://github.com/droans/button-card/issues/737)
+* variable which were objects were only evaluated once ([e40bda9](https://github.com/droans/button-card/commit/e40bda9da67008cbca8f18fc0ef4d65c7b8f08b5))
+* **templates:** `variables` was `undefined` if none where provided. ([fad332b](https://github.com/droans/button-card/commit/fad332b80d0fe910fa99e13e1e291ffa4b65188e)), closes [#718](https://github.com/droans/button-card/issues/718)
+* text/icon contrast when using label-card ([01e199b](https://github.com/droans/button-card/commit/01e199b18b9caa31d4bc1a43c5a143e8d40f2836))
+* tooltip would show over everything ([1bc8f99](https://github.com/droans/button-card/commit/1bc8f9950159a260536d6918b55c3cb15eb7bb04))
+* **color:** main config `color` was broken ([b93c996](https://github.com/droans/button-card/commit/b93c9969c2d1d9be9486edc1607a11635b03c29a))
+* **hacs:** minimum HA version 2023.7 ([db3b394](https://github.com/droans/button-card/commit/db3b394fa6e970599d58c51d0caaa0ab2afbda1d))
+* **templates:** don't use the `numeric_precision` from the card config for `localize` in js templates by default ([2cc384f](https://github.com/droans/button-card/commit/2cc384f9dc5cb91a88a31b363db6083147092bb5))
+* optimize contrast color compute ([35109c3](https://github.com/droans/button-card/commit/35109c3d5c8454958f67be706026e73786f853bc))
+* remove border from blank card ([b05c6b4](https://github.com/droans/button-card/commit/b05c6b470b70f1b6e3a4383d561eb17ca8557e14)), closes [#652](https://github.com/droans/button-card/issues/652)
+* Some cards with child cards wouldn't be clickable ([9f21c58](https://github.com/droans/button-card/commit/9f21c58dacf5605851ef3ab2d936ef8f35d0b783))
+
+
+### Documentation
+
+* minor quotes correction ([#437](https://github.com/droans/button-card/issues/437)) ([9b5f728](https://github.com/droans/button-card/commit/9b5f728905692649d50f291e738e807e3f5ac36e))
+* minor quotes correction ([#438](https://github.com/droans/button-card/issues/438)) ([07ae7a1](https://github.com/droans/button-card/commit/07ae7a129384da329b6f9cb7af62b78e3c34f16a))
+* Override location of lock ([#336](https://github.com/droans/button-card/issues/336)) ([432c038](https://github.com/droans/button-card/commit/432c038daf1b933a6413bbe2bab8dc1365a7dd1f)), closes [#335](https://github.com/droans/button-card/issues/335)
+
 ### [4.1.2](https://github.com/custom-cards/button-card/compare/v4.1.1...v4.1.2) (2024-02-01)
 
 
